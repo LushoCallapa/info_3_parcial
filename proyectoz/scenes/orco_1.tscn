@@ -1,18 +1,17 @@
 [gd_scene load_steps=29 format=3 uid="uid://b1dkq7cvl08c4"]
 
-[ext_resource type="Texture2D" uid="uid://cg3mx8n8t8tsj" path="res://assets/enemigos/Orc1/Orc1_attack/orc1_attack_full.png" id="1_xftta"]
-[ext_resource type="Texture2D" uid="uid://b0uoxl4g5vopt" path="res://assets/enemigos/Orc1/Orc1_death/orc1_death_full.png" id="2_b35w1"]
-[ext_resource type="Texture2D" uid="uid://dfcdvjxycbfce" path="res://assets/enemigos/Orc1/Orc1_hurt/orc1_hurt_full.png" id="3_wgs41"]
-[ext_resource type="Texture2D" uid="uid://bc68nu0h4ibx7" path="res://assets/enemigos/Orc1/Orc1_idle/orc1_idle_full.png" id="4_m6m74"]
-[ext_resource type="Texture2D" uid="uid://3rw55ptxoqcd" path="res://assets/enemigos/Orc1/Orc1_run/orc1_run_full.png" id="5_peteq"]
+[ext_resource type="Texture2D" uid="uid://yjfxpemn6yed" path="res://assets/enemigos/Orc1/Orc1_attack/orc1_attack_full.png" id="1_dqbq2"]
+[ext_resource type="Texture2D" uid="uid://x8nskclx63tq" path="res://assets/enemigos/Orc1/Orc1_death/orc1_death_full.png" id="2_8ttg8"]
+[ext_resource type="Texture2D" uid="uid://7ihm0rlk7q3o" path="res://assets/enemigos/Orc1/Orc1_hurt/orc1_hurt_full.png" id="3_efcfn"]
+[ext_resource type="Texture2D" uid="uid://c3egblm6g2vvd" path="res://assets/enemigos/Orc1/Orc1_idle/orc1_idle_full.png" id="4_o2wyq"]
+[ext_resource type="Texture2D" uid="uid://ddpdaf75difd3" path="res://assets/enemigos/Orc1/Orc1_run/orc1_run_full.png" id="5_akjx2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbwys"]
 radius = 11.0
 height = 28.0
 
-[sub_resource type="Animation" id="Animation_llabn"]
-resource_name = "attack"
-step = 0.1
+[sub_resource type="Animation" id="Animation_dd2jw"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -20,10 +19,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_xftta"), ExtResource("1_xftta")]
+"values": [ExtResource("1_dqbq2")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -32,10 +31,10 @@ tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -50,8 +49,9 @@ tracks/2/keys = {
 "values": [8]
 }
 
-[sub_resource type="Animation" id="Animation_dd2jw"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_llabn"]
+resource_name = "attack"
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,10 +59,10 @@ tracks/0/path = NodePath("Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("1_xftta")]
+"values": [ExtResource("1_dqbq2"), ExtResource("1_dqbq2")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -71,10 +71,10 @@ tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -102,7 +102,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_b35w1")]
+"values": [ExtResource("2_8ttg8")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -143,7 +143,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_wgs41")]
+"values": [ExtResource("3_efcfn")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -185,7 +185,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_m6m74")]
+"values": [ExtResource("4_o2wyq")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -226,7 +226,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_peteq")]
+"values": [ExtResource("5_akjx2")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -335,7 +335,7 @@ shape = SubResource("CapsuleShape2D_bbwys")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, 3)
-texture = ExtResource("1_xftta")
+texture = ExtResource("1_dqbq2")
 hframes = 8
 vframes = 4
 
