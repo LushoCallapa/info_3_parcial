@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://cd1e21gv27pxt"]
+
+[ext_resource type="Texture2D" uid="uid://dip3ctq2ava0l" path="res://assets/efectoAtaque/rafaga.png" id="1_kwgom"]
+[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="2_53tsi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usn7b"]
+radius = 15.0333
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85kj4"]
+atlas = ExtResource("1_kwgom")
+region = Rect2(5, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuaox"]
+atlas = ExtResource("1_kwgom")
+region = Rect2(37, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwmkd"]
+atlas = ExtResource("1_kwgom")
+region = Rect2(69, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf7gb"]
+atlas = ExtResource("1_kwgom")
+region = Rect2(101, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jij2c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85kj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cuaox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwmkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf7gb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_434ih"]
+radius = 15.0
+
+[node name="Bullet" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_usn7b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jij2c")
+autoplay = "default"
+frame = 3
+frame_progress = 0.306699
+
+[node name="HitBox" parent="." instance=ExtResource("2_53tsi")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_434ih")
+debug_color = Color(0.970914, 0, 0.451515, 0.42)
+
+[editable path="HitBox"]
