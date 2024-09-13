@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bnxcsrtmwt175"]
+[gd_scene load_steps=103 format=3 uid="uid://ceu4k74sueqp"]
 
 [ext_resource type="Texture2D" uid="uid://crfhxp2cx1h5n" path="res://assets/mainCharacter/Sword_Attack/Sword_attack_full.png" id="1_7bh0l"]
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_r1i7u"]
@@ -9,11 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://cohhdib3k5c7h" path="res://assets/mainCharacter/Sword_Run_attack/Sword_Run_Attack_full.png" id="6_0lyjq"]
 [ext_resource type="Texture2D" uid="uid://ml842qeb1oxq" path="res://assets/mainCharacter/Sword_Walk/Sword_Walk_full.png" id="7_0bbx5"]
 [ext_resource type="Texture2D" uid="uid://416wmilp7doe" path="res://assets/mainCharacter/Sword_Walk_attack/Sword_Walk_Attack_full.png" id="8_3pox6"]
-[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
-[ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="11_101np"]
+[ext_resource type="PackedScene" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
+[ext_resource type="PackedScene" path="res://scenes/hurt_box.tscn" id="11_101np"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7s375"]
-radius = 8.0
+radius = 4.0
 height = 22.0
 
 [sub_resource type="Animation" id="Animation_0upu7"]
@@ -1750,7 +1750,7 @@ hframes = 32
 frame = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -1)
+position = Vector2(-2, -1)
 shape = SubResource("CapsuleShape2D_7s375")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

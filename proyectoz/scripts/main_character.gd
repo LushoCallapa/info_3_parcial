@@ -63,7 +63,7 @@ func move_state(delta):
 		state_machine.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 		
-	look_at(get_global_mouse_position())
+	#look_at(get_global_mouse_position())
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("NormalAttack"):
