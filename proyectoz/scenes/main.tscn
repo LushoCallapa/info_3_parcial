@@ -8,26 +8,31 @@
 position = Vector2(470, 277)
 
 [node name="Level1" parent="." instance=ExtResource("1_rotj5")]
-position = Vector2(-469, -289)
+position = Vector2(-426, -246)
 
 [node name="MainCharacter" parent="Level1" instance=ExtResource("2_1svwk")]
-position = Vector2(161, 138)
+position = Vector2(296, 256)
 up_direction = Vector2(0, 1)
 
 [node name="Camera2D2" type="Camera2D" parent="Level1/MainCharacter"]
-visible = false
 position = Vector2(-2, -2)
 scale = Vector2(23.9079, 532.049)
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 drag_left_margin = 0.18
 drag_top_margin = 0.18
 drag_right_margin = 0.18
 drag_bottom_margin = 0.18
-editor_draw_screen = false
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Marker2D" type="Marker2D" parent="Level1/MainCharacter"]
+scale = Vector2(23.9079, 532.049)
 
 [node name="Orco1" parent="Level1" node_paths=PackedStringArray("target") instance=ExtResource("3_rb1l6")]
 position = Vector2(487, 336)
 scale = Vector2(0.8, 0.8)
-target = NodePath("../MainCharacter")
+target = NodePath("../MainCharacter/Marker2D")

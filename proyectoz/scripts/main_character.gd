@@ -63,7 +63,6 @@ func move_state(delta):
 		set_animations(input_vector)
 		state_machine.travel("Walk")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
-		print(input_vector.normalized())
 	else:
 		set_animations(input_vector)
 		state_machine.travel("Idle")
