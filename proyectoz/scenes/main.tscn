@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://btt4k46v6fe7s"]
+[gd_scene load_steps=4 format=3 uid="uid://bn3yb2u64pkca"]
 
-[ext_resource type="PackedScene" uid="uid://ukji83s57t57" path="res://scenes/level_1.tscn" id="1_rotj5"]
-[ext_resource type="PackedScene" uid="uid://bnxcsrtmwt175" path="res://scenes/main_character.tscn" id="2_1svwk"]
+[ext_resource type="PackedScene" uid="uid://7cx2e55gpxp5" path="res://scenes/level_1.tscn" id="1_rotj5"]
+[ext_resource type="PackedScene" uid="uid://ceu4k74sueqp" path="res://scenes/main_character.tscn" id="2_1svwk"]
+[ext_resource type="PackedScene" uid="uid://dmjj0p7qvo8jl" path="res://scenes/orco_1.tscn" id="3_rb1l6"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(470, 277)
 
 [node name="Level1" parent="." instance=ExtResource("1_rotj5")]
+position = Vector2(-426, -246)
 
-[node name="MainCharacter" parent="." instance=ExtResource("2_1svwk")]
-position = Vector2(105, 54)
+[node name="MainCharacter" parent="Level1" instance=ExtResource("2_1svwk")]
+position = Vector2(296, 256)
+up_direction = Vector2(0, 1)
 
-[node name="Camera2D2" type="Camera2D" parent="MainCharacter"]
-zoom = Vector2(5, 5)
+[node name="Camera2D2" type="Camera2D" parent="Level1/MainCharacter"]
+position = Vector2(-2, -2)
+scale = Vector2(23.9079, 532.049)
+zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
@@ -22,3 +28,11 @@ drag_right_margin = 0.18
 drag_bottom_margin = 0.18
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="Marker2D" type="Marker2D" parent="Level1/MainCharacter"]
+scale = Vector2(23.9079, 532.049)
+
+[node name="Orco1" parent="Level1" node_paths=PackedStringArray("target") instance=ExtResource("3_rb1l6")]
+position = Vector2(487, 336)
+scale = Vector2(0.8, 0.8)
+target = NodePath("../MainCharacter/Marker2D")

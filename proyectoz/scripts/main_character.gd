@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = $AnimationTree.get("parameters/playback")
+@export var body: CharacterBody2D
 
 #func _physics_process(delta: float) -> void:
 	#var motion = Vector2()
@@ -37,6 +38,12 @@ enum {
 # variable de estado actual
 var state = MOVE
 
+func set_animations(input_vector):
+	animation_tree.set("parameters/Idle/blend_position", input_vector)
+	animation_tree.set("parameters/Walk/blend_position", input_vector)
+	animation_tree.set("parameters/Run/blend_position", input_vector)
+	animation_tree.set("parameters/Attack/blend_position", input_vector)
+
 func _physics_process(delta: float) -> void:
 	match state:
 		MOVE:
@@ -53,13 +60,11 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO:
-		animation_tree.set("parameters/Idle/blend_position", input_vector)
-		animation_tree.set("parameters/Walk/blend_position", input_vector)
-		animation_tree.set("parameters/Run/blend_position", input_vector)
-		animation_tree.set("parameters/Attack/blend_position", input_vector)
+		set_animations(input_vector)
 		state_machine.travel("Walk")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
+		set_animations(input_vector)
 		state_machine.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 		
