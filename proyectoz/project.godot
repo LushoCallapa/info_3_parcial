@@ -78,3 +78,4 @@ RunDown={
 2d_physics/layer_6="enemy_hit"
 2d_physics/layer_7="enemy_hut"
 2d_physics/layer_8="bullet_hit"
+2d_physics/layer_9="area_enemigo"

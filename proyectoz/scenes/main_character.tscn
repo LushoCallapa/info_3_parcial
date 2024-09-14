@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://ceu4k74sueqp"]
+[gd_scene load_steps=105 format=3 uid="uid://ceu4k74sueqp"]
 
 [ext_resource type="Texture2D" uid="uid://crfhxp2cx1h5n" path="res://assets/mainCharacter/Sword_Attack/Sword_attack_full.png" id="1_7bh0l"]
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_r1i7u"]
@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cohhdib3k5c7h" path="res://assets/mainCharacter/Sword_Run_attack/Sword_Run_Attack_full.png" id="6_0lyjq"]
 [ext_resource type="Texture2D" uid="uid://ml842qeb1oxq" path="res://assets/mainCharacter/Sword_Walk/Sword_Walk_full.png" id="7_0bbx5"]
 [ext_resource type="Texture2D" uid="uid://416wmilp7doe" path="res://assets/mainCharacter/Sword_Walk_attack/Sword_Walk_Attack_full.png" id="8_3pox6"]
-[ext_resource type="PackedScene" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
-[ext_resource type="PackedScene" path="res://scenes/hurt_box.tscn" id="11_101np"]
+[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
+[ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="11_101np"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7s375"]
 radius = 4.0
@@ -1738,10 +1738,18 @@ states/Walk_Attack/position = Vector2(429, 393)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cws85"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_vpuhf"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7prff"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_5j8uj"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ne34f"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ri3p6"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_uvqe5"), "Walk", "Walk_Attack", SubResource("AnimationNodeStateMachineTransition_smnuv"), "Run", "Run_Attack", SubResource("AnimationNodeStateMachineTransition_ic2f0"), "Run_Attack", "Run", SubResource("AnimationNodeStateMachineTransition_v4r28"), "Walk_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_qwxr6"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_odlvn"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_jxn8h"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_3u45h"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_thnvy")]
 graph_offset = Vector2(-122.639, 60.6821)
 
-[node name="MainCharacter" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 133
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_douor"]
+radius = 5.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3kma"]
+radius = 8.0
+height = 22.0
+
+[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("body")]
+collision_mask = 0
 script = ExtResource("1_r1i7u")
+body = NodePath(".")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.1, 0)
@@ -1771,8 +1779,23 @@ parameters/Walk/blend_position = Vector2(0, 0)
 parameters/Walk_Attack/blend_position = Vector2(0, 0)
 
 [node name="HitBox" parent="." instance=ExtResource("10_ddbn8")]
+collision_layer = 266
+collision_mask = 64
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-2, -1)
+shape = SubResource("CapsuleShape2D_douor")
 
 [node name="HurtBox" parent="." instance=ExtResource("11_101np")]
+collision_layer = 16
+collision_mask = 288
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-1, -1)
+shape = SubResource("CapsuleShape2D_x3kma")
+debug_color = Color(0.669609, 0.509535, 5.77569e-07, 0.42)
+
+[node name="MainCharacterController" type="Node2D" parent="."]
 
 [editable path="HitBox"]
 [editable path="HurtBox"]
