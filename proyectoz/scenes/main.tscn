@@ -30,7 +30,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="Marker2D" type="Marker2D" parent="Level1/MainCharacter"]
-scale = Vector2(23.9079, 532.049)
 
 [node name="Orco1" parent="Level1" node_paths=PackedStringArray("target") instance=ExtResource("3_rb1l6")]
 position = Vector2(487, 336)
