@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cohhdib3k5c7h" path="res://assets/mainCharacter/Sword_Run_attack/Sword_Run_Attack_full.png" id="6_0lyjq"]
 [ext_resource type="Texture2D" uid="uid://ml842qeb1oxq" path="res://assets/mainCharacter/Sword_Walk/Sword_Walk_full.png" id="7_0bbx5"]
 [ext_resource type="Texture2D" uid="uid://416wmilp7doe" path="res://assets/mainCharacter/Sword_Walk_attack/Sword_Walk_Attack_full.png" id="8_3pox6"]
-[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
-[ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="11_101np"]
+[ext_resource type="PackedScene" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
+[ext_resource type="PackedScene" path="res://scenes/hurt_box.tscn" id="11_101np"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7s375"]
 radius = 4.0
@@ -1747,7 +1747,6 @@ radius = 8.0
 height = 22.0
 
 [node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("body")]
-collision_mask = 0
 script = ExtResource("1_r1i7u")
 body = NodePath(".")
 
@@ -1779,7 +1778,7 @@ parameters/Walk/blend_position = Vector2(0, 0)
 parameters/Walk_Attack/blend_position = Vector2(0, 0)
 
 [node name="HitBox" parent="." instance=ExtResource("10_ddbn8")]
-collision_layer = 266
+collision_layer = 10
 collision_mask = 64
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
@@ -1788,7 +1787,7 @@ shape = SubResource("CapsuleShape2D_douor")
 
 [node name="HurtBox" parent="." instance=ExtResource("11_101np")]
 collision_layer = 16
-collision_mask = 288
+collision_mask = 416
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, -1)
