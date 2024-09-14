@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1napt2i3aldb"
-path="res://.godot/imported/final_boss_sprites_sheet_by_neomar654_dg45fm4.png-69c289fe2f9a5e43644207f41055b691.ctex"
+uid="uid://ervuw4mlh4l"
+path="res://.godot/imported/demon_idle_4.png-b0ff106367c2b656e725f9c1ede2f404.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/jefe/final_boss_sprites_sheet_by_neomar654_dg45fm4.png"
-dest_files=["res://.godot/imported/final_boss_sprites_sheet_by_neomar654_dg45fm4.png-69c289fe2f9a5e43644207f41055b691.ctex"]
+source_file="res://assets/jefe/demon_idle/demon_idle_4.png"
+dest_files=["res://.godot/imported/demon_idle_4.png-b0ff106367c2b656e725f9c1ede2f404.ctex"]
 
 [params]
 
