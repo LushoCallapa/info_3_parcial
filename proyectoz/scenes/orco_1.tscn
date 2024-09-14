@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://dmjj0p7qvo8jl"]
+[gd_scene load_steps=66 format=3 uid="uid://b1dkq7cvl08c4"]
 
 [ext_resource type="Texture2D" uid="uid://yjfxpemn6yed" path="res://assets/enemigos/Orc1/Orc1_attack/orc1_attack_full.png" id="1_dqbq2"]
 [ext_resource type="Script" path="res://scenes/orco_1.gd" id="1_k2as2"]

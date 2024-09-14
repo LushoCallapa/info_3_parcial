@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://7cx2e55gpxp5"]
+[gd_scene load_steps=27 format=4 uid="uid://ukji83s57t57"]
 
 [ext_resource type="Texture2D" uid="uid://hum7nh41rgkv" path="res://assets/mapas/level1/[A]Grass1-Grass2_pipo.png" id="1_0d70n"]
 [ext_resource type="Texture2D" uid="uid://h16qkyf60nps" path="res://assets/mapas/level1/[A]Water1_Cave1_pipo.png" id="3_1k8fn"]
