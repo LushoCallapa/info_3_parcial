@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Orco1
 
 signal healthChanged
+signal deathCount
 
 @export var target: Node2D = null
 @export var max_speed = 50
@@ -102,6 +103,7 @@ func attack_hurt_finished():
 	
 func death_animation_finish():
 	queue_free()
+	deathCount.emit()
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	body.damage = 10
