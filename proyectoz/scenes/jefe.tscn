@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=3 uid="uid://dghj5lg2j3j5"]
+[gd_scene load_steps=126 format=3 uid="uid://dghj5lg2j3j5"]
 
 [ext_resource type="Script" path="res://scripts/jefe.gd" id="1_0ipgd"]
 [ext_resource type="Texture2D" uid="uid://bs2hwylfqil6k" path="res://assets/jefe/demon_idle/demon_idle_1.png" id="1_vpj2a"]
@@ -63,6 +63,9 @@
 [ext_resource type="Texture2D" uid="uid://bgix18e74sic3" path="res://assets/jefe/demon_death/demon_death_22.png" id="60_en8p3"]
 [ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="62_hf62k"]
 [ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="63_ptiho"]
+[ext_resource type="Texture2D" uid="uid://c57pdlasjwyp8" path="res://assets/healthBar/healthbarUnder.png" id="64_12y7d"]
+[ext_resource type="Texture2D" uid="uid://bxkbfy51tfddw" path="res://assets/healthBar/barraVidaJefe.png" id="65_qvorl"]
+[ext_resource type="Script" path="res://scripts/texture_progress_bar_boss.gd" id="66_1fky3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pt2f"]
 size = Vector2(57, 16.5)
@@ -116,6 +119,42 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DetectionArea/CollisionShape2D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(69.5, 10)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DetectionArea/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-60.625, 10.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBoXPivot/HitBox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30.75, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_dd8q1"]
@@ -171,6 +210,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DetectionArea/CollisionShape2D2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(69.5, 10)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DetectionArea/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-60.625, 10.5)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBoXPivot/HitBox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(30.75, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_pw4yl"]
 resource_name = "attackRight"
@@ -223,7 +298,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(77, 34.975)]
+"values": [Vector2(43, 34.975)]
 }
 
 [sub_resource type="Animation" id="Animation_ayqy4"]
@@ -253,6 +328,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death_animation_finish"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_3hdf8"]
@@ -343,6 +432,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, false, false, false, false]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_hurt_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_4h4ml"]
 resource_name = "takeHitRight"
@@ -371,6 +474,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, true, true, true, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_hurt_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_5vwp6"]
@@ -575,8 +692,27 @@ blend_point_4/pos = Vector2(-0.1, -0.8)
 blend_point_5/node = SubResource("AnimationNodeAnimation_ploem")
 blend_point_5/pos = Vector2(0.1, -0.8)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cj5mx"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ikb58"]
 animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lsr2w"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_evf32"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q3df6"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bv4il"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ikb58")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_lsr2w")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_evf32")
+blend_point_2/pos = Vector2(0, -0.9)
+blend_point_3/node = SubResource("AnimationNodeAnimation_q3df6")
+blend_point_3/pos = Vector2(-1, 0)
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aadi8"]
 advance_mode = 2
@@ -595,9 +731,9 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3106h"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x6xsj"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4fdl1"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_re3p8"]
 switch_mode = 2
 advance_mode = 2
 
@@ -610,22 +746,23 @@ states/Idle/node = SubResource("AnimationNodeBlendSpace2D_rwmhm")
 states/Idle/position = Vector2(386, 111)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_icm17")
 states/Walk/position = Vector2(546, 219)
-states/death/node = SubResource("AnimationNodeAnimation_cj5mx")
-states/death/position = Vector2(735, 111)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_aadi8"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_dqi6a"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_mg4mf"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_hprg4"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_tnf3u"), "Idle", "DamageReceive", SubResource("AnimationNodeStateMachineTransition_gepru"), "DamageReceive", "Idle", SubResource("AnimationNodeStateMachineTransition_hvxxa"), "Idle", "death", SubResource("AnimationNodeStateMachineTransition_3106h"), "death", "End", SubResource("AnimationNodeStateMachineTransition_4fdl1")]
+states/death/node = SubResource("AnimationNodeBlendSpace2D_bv4il")
+states/death/position = Vector2(729, 120)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_aadi8"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_dqi6a"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_mg4mf"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_hprg4"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_tnf3u"), "Idle", "DamageReceive", SubResource("AnimationNodeStateMachineTransition_gepru"), "DamageReceive", "Idle", SubResource("AnimationNodeStateMachineTransition_hvxxa"), "Idle", "death", SubResource("AnimationNodeStateMachineTransition_x6xsj"), "death", "End", SubResource("AnimationNodeStateMachineTransition_re3p8")]
+graph_offset = Vector2(161, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3eg8v"]
-size = Vector2(75.5, 70)
+size = Vector2(110.5, 70)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ntyf8"]
 radius = 36.0
 height = 90.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5woeq"]
-size = Vector2(77.25, 69)
+size = Vector2(111.25, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgcot"]
-size = Vector2(78, 70)
+size = Vector2(117, 70)
 
 [node name="jefe" type="CharacterBody2D"]
 collision_layer = 260
@@ -654,6 +791,7 @@ parameters/Attack/blend_position = Vector2(0.153584, -0.327434)
 parameters/DamageReceive/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.0546075, 0.20354)
 parameters/Walk/blend_position = Vector2(0.127986, -0.230088)
+parameters/death/blend_position = Vector2(0, 0)
 
 [node name="HitBoXPivot" type="Marker2D" parent="."]
 position = Vector2(-90, 34.975)
@@ -663,7 +801,7 @@ collision_layer = 288
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HitBoXPivot/HitBox" index="0"]
-position = Vector2(13.25, 0)
+position = Vector2(30.75, 0)
 shape = SubResource("RectangleShape2D_3eg8v")
 disabled = true
 
@@ -682,18 +820,34 @@ collision_layer = 256
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-77.625, 10.5)
+position = Vector2(-60.625, 10.5)
 shape = SubResource("RectangleShape2D_5woeq")
 debug_color = Color(0, 0, 0, 0.42)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(89, 10)
+position = Vector2(69.5, 10)
 shape = SubResource("RectangleShape2D_rgcot")
 debug_color = Color(1.86507e-07, 0.173807, 0.20874, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("Jefe")]
+offset_left = -83.0
+offset_top = -36.0
+offset_right = 86.0
+offset_bottom = -25.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("64_12y7d")
+texture_progress = ExtResource("65_qvorl")
+script = ExtResource("66_1fky3")
+Jefe = NodePath("..")
+
 [connection signal="area_entered" from="HitBoXPivot/HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 

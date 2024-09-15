@@ -17,9 +17,9 @@ collision_mask = 257
 zoom = Vector2(2, 2)
 
 [node name="Marker2D" type="Marker2D" parent="Level2/MainCharacter"]
+position = Vector2(-2, 0)
 
 [node name="jefe" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("2_rdf3i")]
 position = Vector2(652, 314)
-scale = Vector2(1.5, 1.5)
 target = NodePath("../MainCharacter/Marker2D")
 body = NodePath("../MainCharacter")

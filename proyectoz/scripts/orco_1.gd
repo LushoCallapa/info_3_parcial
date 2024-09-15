@@ -93,7 +93,6 @@ func attack_state(delta):
 	state_machine.travel("attack")
 
 func attack_anim_finished():
-	
 	state = MOVE
 	if not body:
 		state = PAUSE
