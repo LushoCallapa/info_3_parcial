@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @export var target: Vector2
-var speed = 40
+var speed = 100
 @export var direction: Vector2
 
 

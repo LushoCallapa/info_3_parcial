@@ -791,6 +791,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-0.33333, 7), Vector2(-2.33333, 7)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death_animation_finish"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_f5nib"]
 resource_name = "sword_death_left"
@@ -855,6 +869,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-8.33333, 7), Vector2(-9.33333, 7)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death_animation_finish"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ub4ss"]
@@ -921,6 +949,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-14.3333, 7)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death_animation_finish"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_fhw5b"]
 resource_name = "sword_death_up"
@@ -986,6 +1028,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-6.33333, 7), Vector2(-7.33333, 9)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death_animation_finish"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_apq03"]
 resource_name = "sword_hurt_down"
@@ -1050,6 +1106,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-2.14286, 0.142857)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.384615),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_hurt_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_d8cv0"]
@@ -1128,6 +1198,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(-1.33333, 8)]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.384615),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_hurt_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_wg1a7"]
 resource_name = "sword_hurt_right"
@@ -1193,6 +1277,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-4.14286, -0.857143)]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.384615),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_hurt_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_n57dx"]
 resource_name = "sword_hurt_up"
@@ -1257,6 +1355,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.666667, 8)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.384615),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_hurt_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ipcr1"]
@@ -3238,6 +3350,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_odlvn"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jxn8h"]

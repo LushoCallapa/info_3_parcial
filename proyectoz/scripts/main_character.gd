@@ -7,7 +7,7 @@ signal healthChanged
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = $AnimationTree.get("parameters/playback")
 @export var body: CharacterBody2D
-
+@export var damage = 10
 @export var maxHealth = 100
 @export var currentHealth: int = maxHealth
 
@@ -20,7 +20,8 @@ const RUN_SPEED_MULTIPLIER = 1.7  # Multiplicador de velocidad cuando se corre
 enum {
 	MOVE,
 	ATTACK,
-	HURT
+	HURT,
+	DEATH
 }
 
 var bullet_scene
@@ -48,6 +49,8 @@ func _physics_process(delta: float) -> void:
 			attack_state(delta)
 		HURT:
 			hurt_state(delta)
+		DEATH:
+			death_state(delta)
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -125,32 +128,35 @@ func attack_state(delta):
 
 func attack_anim_finished():
 	state = MOVE
+	
+func attack_hurt_finished():
+	state = MOVE
 
 # Función para recibir daño
 func receive_damage(amount: int):
 	currentHealth -= amount  # Reducir la salud
+	print(currentHealth)
 	emit_signal("healthChanged", currentHealth)
 	healthChanged.emit()
 
 	# Si la salud llega a cero, el personaje muere
 	if currentHealth <= 0:
 		currentHealth = 0
-		state_machine.travel("Death")
+		state = DEATH
 	else:
 		# Si no muere, activar la animación de daño
 		state = HURT
-		state_machine.travel("Hurt")
 		
-	state = MOVE
-
 # Estado cuando el personaje está recibiendo daño
-func hurt_state(delta):
-	velocity = Vector2.ZERO  # Detiene el movimiento durante el daño
-	
-	# Al finalizar la animación de Hurt, vuelve al estado MOVE
-	#if animation_tree.is_animation_finished():
-		#state = MOVE
+func death_state(delta):
+	state_machine.travel("Death")
 
+func hurt_state(delta):
+	#velocity = Vector2.ZERO  # Detiene el movimiento durante el daño
+	state_machine.travel("Hurt")
+	# Al finalizar la animación de Hurt, vuelve al estado MOVE
+func death_animation_finish():
+	queue_free()
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	print("area")
-	receive_damage(10)
+	receive_damage(damage)
