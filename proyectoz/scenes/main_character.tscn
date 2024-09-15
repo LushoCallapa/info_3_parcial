@@ -3309,9 +3309,10 @@ parameters/Walk_Attack/blend_position = Vector2(0, 0)
 [node name="HitBoxPivot" type="Marker2D" parent="."]
 position = Vector2(0, 15)
 rotation = 1.5708
+scale = Vector2(1, 1.02462)
 
 [node name="HitBox" parent="HitBoxPivot" instance=ExtResource("10_ddbn8")]
-collision_layer = 266
+collision_layer = 10
 collision_mask = 64
 
 [node name="CollisionShape2D" parent="HitBoxPivot/HitBox" index="0"]
@@ -3321,8 +3322,8 @@ one_way_collision_margin = 0.0
 debug_color = Color(0.823095, 0.377075, 0.363333, 0.42)
 
 [node name="HurtBox" parent="." instance=ExtResource("11_101np")]
-collision_layer = 16
-collision_mask = 416
+collision_layer = 272
+collision_mask = 160
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(1, 0)

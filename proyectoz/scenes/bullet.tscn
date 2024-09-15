@@ -1,7 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cd1e21gv27pxt"]
+[gd_scene load_steps=12 format=3 uid="uid://cd1e21gv27pxt"]
 
 [ext_resource type="Texture2D" uid="uid://dip3ctq2ava0l" path="res://assets/efectoAtaque/rafaga.png" id="1_kwgom"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_uf1ij"]
 [ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="2_53tsi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0wpi7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usn7b"]
 radius = 15.0333
@@ -46,6 +49,12 @@ animations = [{
 radius = 15.0
 
 [node name="Bullet" type="RigidBody2D"]
+scale = Vector2(0.386134, 0.369288)
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_0wpi7")
+gravity_scale = 0.0
+script = ExtResource("1_uf1ij")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_usn7b")
@@ -53,10 +62,11 @@ shape = SubResource("CircleShape2D_usn7b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jij2c")
 autoplay = "default"
-frame = 3
-frame_progress = 0.306699
+frame_progress = 0.798032
 
 [node name="HitBox" parent="." instance=ExtResource("2_53tsi")]
+collision_layer = 128
+collision_mask = 64
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("CircleShape2D_434ih")
