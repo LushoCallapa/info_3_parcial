@@ -117,6 +117,9 @@ func _on_detection_area_area_exited(area: Area2D) -> void:
 	if not body:
 		state = PAUSE
 
-
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	body.damage = 10
+
+
+func _on_hurt_box_area_entered(area: Area2D) -> void:
+	receive_damage(damage)

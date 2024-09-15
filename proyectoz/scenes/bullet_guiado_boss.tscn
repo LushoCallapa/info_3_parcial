@@ -1,55 +1,67 @@
-[gd_scene load_steps=8 format=3 uid="uid://daewru2vn5b7g"]
+[gd_scene load_steps=10 format=3 uid="uid://daewru2vn5b7g"]
 
-[ext_resource type="Texture2D" uid="uid://bam6wc1fq8g18" path="res://assets/efectoAtaque/bulletGuiadoBoss.png" id="1_3to40"]
+[ext_resource type="Texture2D" uid="uid://c6n5cdvwnhba4" path="res://assets/efectoAtaque/dirigidaBoss.png" id="1_y40p2"]
 [ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="2_iqjhl"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vn6p4"]
-atlas = ExtResource("1_3to40")
-region = Rect2(3, 0, 20, 20)
+[sub_resource type="CircleShape2D" id="CircleShape2D_u2l0j"]
+radius = 8.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a7b2v"]
-atlas = ExtResource("1_3to40")
-region = Rect2(23, 0, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r2x5"]
+atlas = ExtResource("1_y40p2")
+region = Rect2(3, 0, 16, 21)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4f5lj"]
-atlas = ExtResource("1_3to40")
-region = Rect2(43, 0, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wwrp"]
+atlas = ExtResource("1_y40p2")
+region = Rect2(19, 0, 16, 21)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ocie"]
-atlas = ExtResource("1_3to40")
-region = Rect2(63, 0, 20, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qw72"]
+atlas = ExtResource("1_y40p2")
+region = Rect2(35, 0, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdaf2"]
+atlas = ExtResource("1_y40p2")
+region = Rect2(51, 0, 16, 21)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lroft"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vn6p4")
+"texture": SubResource("AtlasTexture_0r2x5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a7b2v")
+"texture": SubResource("AtlasTexture_7wwrp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4f5lj")
+"texture": SubResource("AtlasTexture_3qw72")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ocie")
+"texture": SubResource("AtlasTexture_qdaf2")
 }],
 "loop": true,
 "name": &"default",
 "speed": 8.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4q85k"]
+radius = 8.0
+
 [node name="BulletGuiadoBoss" type="RigidBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u2l0j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0.380392, 0, 1)
 self_modulate = Color(1, 0, 0.223529, 1)
 sprite_frames = SubResource("SpriteFrames_lroft")
-frame = 3
-frame_progress = 0.473592
+frame_progress = 0.342341
 
 [node name="HitBox" parent="." instance=ExtResource("2_iqjhl")]
+collision_layer = 128
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("CircleShape2D_4q85k")
+debug_color = Color(0.740004, 0.431403, 0.482968, 0.42)
 
 [editable path="HitBox"]
