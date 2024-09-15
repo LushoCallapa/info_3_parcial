@@ -48,6 +48,7 @@ radius = 15.0
 [node name="Bullet" type="RigidBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_usn7b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -59,6 +60,7 @@ frame_progress = 0.306699
 [node name="HitBox" parent="." instance=ExtResource("2_53tsi")]
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_434ih")
 debug_color = Color(0.970914, 0, 0.451515, 0.42)
 

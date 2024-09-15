@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://btt4k46v6fe7s"]
+[gd_scene load_steps=7 format=3 uid="uid://btt4k46v6fe7s"]
 
 [ext_resource type="PackedScene" uid="uid://ukji83s57t57" path="res://scenes/level_1.tscn" id="1_rotj5"]
 [ext_resource type="PackedScene" uid="uid://bnxcsrtmwt175" path="res://scenes/main_character.tscn" id="2_1svwk"]
 [ext_resource type="PackedScene" uid="uid://b1dkq7cvl08c4" path="res://scenes/orco_1.tscn" id="3_rb1l6"]
+[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="4_dgl2h"]
+[ext_resource type="Texture2D" uid="uid://c57pdlasjwyp8" path="res://assets/healthBar/healthbarUnder.png" id="5_1fmwv"]
+[ext_resource type="Texture2D" uid="uid://dgbk06lrckq3i" path="res://assets/healthBar/healthbarProgress.png" id="6_akpr7"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(470, 277)
@@ -35,3 +38,34 @@ editor_draw_drag_margin = true
 position = Vector2(487, 336)
 scale = Vector2(0.8, 0.8)
 target = NodePath("../MainCharacter/Marker2D")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -266.0
+offset_top = 24.0
+offset_right = -30.0
+offset_bottom = 61.0
+grow_horizontal = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("mainCharacter")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -267.0
+offset_top = 21.0
+offset_right = -28.0
+offset_bottom = 62.0
+grow_horizontal = 0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("5_1fmwv")
+texture_progress = ExtResource("6_akpr7")
+script = ExtResource("4_dgl2h")
+mainCharacter = NodePath("../../Level1/MainCharacter")
