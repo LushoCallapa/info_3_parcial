@@ -23,10 +23,13 @@ enum {
 	HURT
 }
 
+var bullet_scene
 # variable de estado actual
 var state = MOVE
 var is_running = false  # Variable para indicar si está corriendo
-
+func _ready() -> void:
+	bullet_scene = preload("res://scenes/bullet.tscn")
+	
 func set_animations(input_vector):
 	animation_tree.set("parameters/Idle/blend_position", input_vector)
 	animation_tree.set("parameters/Walk/blend_position", input_vector)
@@ -92,6 +95,17 @@ func move_state(delta):
 
 	# Transición a ATTACK si se presiona el botón de ataque
 	if Input.is_action_just_pressed("NormalAttack"):
+		state = ATTACK
+		
+	if Input.is_action_just_pressed("SpecialAttack"):
+		var bullet_instance = bullet_scene.instantiate()
+		get_parent().add_child(bullet_instance)
+		bullet_instance.global_position = global_position
+		var mouse_position = get_global_mouse_position()
+		#print(global_position  ,mouse_position)
+		var direction = (mouse_position - global_position).normalized()
+		bullet_instance.target = mouse_position
+		bullet_instance.direction = direction
 		state = ATTACK
 
 func attack_state(delta):

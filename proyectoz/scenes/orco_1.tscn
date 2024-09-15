@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://b1dkq7cvl08c4"]
+[gd_scene load_steps=66 format=3 uid="uid://dmjj0p7qvo8jl"]
 
 [ext_resource type="Texture2D" uid="uid://yjfxpemn6yed" path="res://assets/enemigos/Orc1/Orc1_attack/orc1_attack_full.png" id="1_dqbq2"]
 [ext_resource type="Script" path="res://scripts/orco_1.gd" id="1_k2as2"]
@@ -10,9 +10,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_i0cxn"]
 radius = 18.0278
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbwys"]
-radius = 11.0
-height = 28.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epnvk"]
+size = Vector2(20, 7)
 
 [sub_resource type="Animation" id="Animation_dd2jw"]
 length = 0.001
@@ -1284,6 +1283,7 @@ graph_offset = Vector2(0, -15.1106)
 
 [node name="Orco1" type="CharacterBody2D"]
 collision_layer = 260
+collision_mask = 0
 script = ExtResource("1_k2as2")
 max_speed = 40
 
@@ -1297,8 +1297,9 @@ shape = SubResource("CircleShape2D_i0cxn")
 debug_color = Color(0.941654, 0.158514, 0.46387, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
-shape = SubResource("CapsuleShape2D_bbwys")
+position = Vector2(0, 13.5)
+scale = Vector2(0.841755, -0.73566)
+shape = SubResource("RectangleShape2D_epnvk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 4)

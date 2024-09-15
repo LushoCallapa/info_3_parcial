@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://bnxcsrtmwt175"]
+[gd_scene load_steps=105 format=3 uid="uid://ceu4k74sueqp"]
 
 [ext_resource type="Texture2D" uid="uid://crfhxp2cx1h5n" path="res://assets/mainCharacter/Sword_Attack/Sword_attack_full.png" id="1_7bh0l"]
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_r1i7u"]
@@ -9,8 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cohhdib3k5c7h" path="res://assets/mainCharacter/Sword_Run_attack/Sword_Run_Attack_full.png" id="6_0lyjq"]
 [ext_resource type="Texture2D" uid="uid://ml842qeb1oxq" path="res://assets/mainCharacter/Sword_Walk/Sword_Walk_full.png" id="7_0bbx5"]
 [ext_resource type="Texture2D" uid="uid://416wmilp7doe" path="res://assets/mainCharacter/Sword_Walk_attack/Sword_Walk_Attack_full.png" id="8_3pox6"]
-[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
-[ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="11_101np"]
+[ext_resource type="PackedScene" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
+[ext_resource type="PackedScene" path="res://scenes/hurt_box.tscn" id="11_101np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4nd6"]
 size = Vector2(9, 6.25)
@@ -3310,6 +3310,7 @@ parameters/Walk_Attack/blend_position = Vector2(0, 0)
 [node name="HitBoxPivot" type="Marker2D" parent="."]
 position = Vector2(0, 15)
 rotation = 1.5708
+scale = Vector2(1, 1.02462)
 
 [node name="HitBox" parent="HitBoxPivot" instance=ExtResource("10_ddbn8")]
 collision_layer = 10
@@ -3324,7 +3325,7 @@ debug_color = Color(0.823095, 0.377075, 0.363333, 0.42)
 
 [node name="HurtBox" parent="." instance=ExtResource("11_101np")]
 collision_layer = 272
-collision_mask = 160
+collision_mask = 32
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(1, 0)
