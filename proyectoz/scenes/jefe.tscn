@@ -121,6 +121,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_dd8q1"]
 resource_name = "attackLeft"
 length = 1.5
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -174,6 +175,7 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_pw4yl"]
 resource_name = "attackRight"
 length = 1.5
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -582,7 +584,6 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dqi6a"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mg4mf"]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hprg4"]
 
@@ -672,8 +673,8 @@ debug_color = Color(0.190891, 0.641083, 0.0846055, 0.42)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(1, 25)
-collision_layer = 260
-collision_mask = 2
+collision_layer = 256
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(-1, 24)

@@ -58,6 +58,11 @@ func attack_state(delta):
 func attack_anim_finished():
 	state = MOVE
 	
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_detection_area_area_entered(area: Area2D) -> void:
 	print("Hola")
 	state = ATTACK
+
+
+func _on_detection_area_area_exited(area: Area2D) -> void:
+	print("Adios")
+	state = MOVE

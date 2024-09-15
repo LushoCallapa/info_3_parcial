@@ -10,6 +10,8 @@
 
 [node name="MainCharacter" parent="Level2" instance=ExtResource("3_x3l7f")]
 position = Vector2(118, 51)
+collision_layer = 1
+collision_mask = 257
 
 [node name="Camera2D" type="Camera2D" parent="Level2/MainCharacter"]
 zoom = Vector2(2, 2)
