@@ -8,7 +8,6 @@ extends CharacterBody2D
 
 enum {
 	MOVE,
-	ROLL,
 	ATTACK
 }
 
@@ -34,8 +33,6 @@ func _physics_process(delta: float) -> void:
 	match state:
 		MOVE:
 			move_state(delta)
-		ROLL:
-			pass
 		ATTACK:
 			attack_state(delta)
 
