@@ -8,15 +8,14 @@ signal healthChanged
 @onready var state_machine = $AnimationTree.get("parameters/playback")
 @export var body: CharacterBody2D
 @export var damage = 10
-@export var maxHealth = 100
+@export var maxHealth = 150
 @export var currentHealth: int = maxHealth
 
 const ACCELERATION = 500
 const FRICTION = 500
 const MAX_SPEED = 50
-const RUN_SPEED_MULTIPLIER = 1.7  # Multiplicador de velocidad cuando se corre
+const RUN_SPEED_MULTIPLIER = 1.7 
 
-# estados del player
 enum {
 	MOVE,
 	ATTACK,
@@ -25,9 +24,8 @@ enum {
 }
 
 var bullet_scene
-# variable de estado actual
 var state = MOVE
-var is_running = false  # Variable para indicar si está corriendo
+var is_running = false
 func _ready() -> void:
 	bullet_scene = preload("res://scenes/bullet.tscn")
 	
@@ -78,8 +76,6 @@ func move_state(delta):
 
 	if input_vector != Vector2.ZERO:
 		set_animations(input_vector)
-		
-		# Si se están usando las teclas Run, el personaje corre
 		if Input.is_action_pressed("RunUp") or Input.is_action_pressed("RunDown") or Input.is_action_pressed("RunRight") or Input.is_action_pressed("RunLeft"):
 			is_running = true
 			state_machine.travel("Run")
@@ -96,8 +92,8 @@ func move_state(delta):
 	
 	move_and_slide()
 
-	# Transición a ATTACK si se presiona el botón de ataque
 	if Input.is_action_just_pressed("NormalAttack"):
+		#state_machine.travel("Attack")
 		state = ATTACK
 		
 	if Input.is_action_just_pressed("SpecialAttack"):
@@ -112,9 +108,8 @@ func move_state(delta):
 		state = ATTACK
 
 func attack_state(delta):
-	velocity = Vector2.ZERO  # Detiene el movimiento durante el ataque
+	velocity = Vector2.ZERO
 	
-	# Si está corriendo, usa la animación de Run_Attack, de lo contrario, usa Walk_Attack
 	if is_running:
 		state_machine.travel("Run_Attack")
 	else:
@@ -122,41 +117,34 @@ func attack_state(delta):
 		
 	state = MOVE
 
-	# Transición de vuelta a MOVE al finalizar la animación de ataque
-	#if animation_tree.is_animation_finished():
-		#state = MOVE
-
 func attack_anim_finished():
 	state = MOVE
 	
 func attack_hurt_finished():
 	state = MOVE
 
-# Función para recibir daño
 func receive_damage(amount: int):
-	currentHealth -= amount  # Reducir la salud
+	currentHealth -= amount
 	print(currentHealth)
 	emit_signal("healthChanged", currentHealth)
 	healthChanged.emit()
 
-	# Si la salud llega a cero, el personaje muere
 	if currentHealth <= 0:
 		currentHealth = 0
 		state = DEATH
 	else:
-		# Si no muere, activar la animación de daño
 		state = HURT
-		
-# Estado cuando el personaje está recibiendo daño
+
 func death_state(delta):
 	state_machine.travel("Death")
 
 func hurt_state(delta):
 	#velocity = Vector2.ZERO  # Detiene el movimiento durante el daño
 	state_machine.travel("Hurt")
-	# Al finalizar la animación de Hurt, vuelve al estado MOVE
+
 func death_animation_finish():
 	queue_free()
+	
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	print("area")
 	receive_damage(damage)

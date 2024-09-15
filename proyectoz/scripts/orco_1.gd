@@ -19,6 +19,7 @@ enum {
 	PAUSE,
 	ATTACK,
 	HURT,
+	DEATH,
 }
 
 # variable de estado actual
@@ -51,6 +52,8 @@ func _physics_process(delta: float) -> void:
 			attack_state(delta)
 		HURT:
 			hurt_state(delta)
+		DEATH:
+			death_state(delta)
 
 func move_state(delta):
 	if target:
@@ -67,22 +70,24 @@ func move_state(delta):
 	
 func receive_damage(amount: int):
 	currentHealth -= amount  # Reducir la salud
+	print(currentHealth)
 	emit_signal("healthChanged", currentHealth)
 	healthChanged.emit()
 
 	# Si la salud llega a cero, el personaje muere
 	if currentHealth <= 0:
 		currentHealth = 0
-		state_machine.travel("dead")
+		state = DEATH
 	else:
 		# Si no muere, activar la animación de daño
 		state = HURT
-		state_machine.travel("hurt")
-		
-	state = MOVE
 	
 func hurt_state(delta):
+	state_machine.travel("hurt")
 	velocity = Vector2.ZERO
+	
+func death_state(delta):
+	state_machine.travel("dead")
 
 func attack_state(delta):
 	state_machine.travel("attack")
@@ -92,8 +97,15 @@ func attack_anim_finished():
 	state = MOVE
 	if not body:
 		state = PAUSE
+		
+func attack_hurt_finished():
+	state = MOVE
+	
+func death_animation_finish():
+	queue_free()
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	body.damage = 5
 	state = ATTACK
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
