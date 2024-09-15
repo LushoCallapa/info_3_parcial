@@ -582,6 +582,7 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dqi6a"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mg4mf"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hprg4"]
 
@@ -619,10 +620,12 @@ size = Vector2(49, 70)
 radius = 36.0
 height = 90.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j24mj"]
-radius = 142.172
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5woeq"]
+size = Vector2(230.5, 42)
 
 [node name="jefe" type="CharacterBody2D"]
+collision_layer = 261
+collision_mask = 16
 script = ExtResource("1_0ipgd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -652,8 +655,8 @@ parameters/Walk/blend_position = Vector2(0.127986, -0.230088)
 position = Vector2(-90, 34.975)
 
 [node name="HitBox" parent="HitBoXPivot" instance=ExtResource("62_hf62k")]
-collision_layer = 32
-collision_mask = 0
+collision_layer = 256
+collision_mask = 18
 
 [node name="CollisionShape2D" parent="HitBoXPivot/HitBox" index="0"]
 shape = SubResource("RectangleShape2D_3eg8v")
@@ -661,7 +664,7 @@ shape = SubResource("RectangleShape2D_3eg8v")
 [node name="HurtBox" parent="." instance=ExtResource("63_ptiho")]
 position = Vector2(1, 27)
 collision_layer = 64
-collision_mask = 8
+collision_mask = 136
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 shape = SubResource("CapsuleShape2D_ntyf8")
@@ -669,11 +672,12 @@ debug_color = Color(0.190891, 0.641083, 0.0846055, 0.42)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(1, 25)
-collision_layer = 4
+collision_layer = 260
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource("CircleShape2D_j24mj")
+position = Vector2(-1, 24)
+shape = SubResource("RectangleShape2D_5woeq")
 debug_color = Color(0, 0, 0, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

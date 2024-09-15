@@ -9,16 +9,14 @@
 [node name="Level2" parent="." instance=ExtResource("1_romt4")]
 
 [node name="MainCharacter" parent="Level2" instance=ExtResource("3_x3l7f")]
-position = Vector2(487, 578)
-up_direction = Vector2(0, 1)
+position = Vector2(118, 51)
 
 [node name="Camera2D" type="Camera2D" parent="Level2/MainCharacter"]
 zoom = Vector2(2, 2)
 
 [node name="Marker2D" type="Marker2D" parent="Level2/MainCharacter"]
-scale = Vector2(50, 200)
 
 [node name="jefe" parent="Level2" node_paths=PackedStringArray("target") instance=ExtResource("2_rdf3i")]
-position = Vector2(730, 300)
-scale = Vector2(1.3, 1.3)
+position = Vector2(652, 314)
+scale = Vector2(1.5, 1.5)
 target = NodePath("../MainCharacter/Marker2D")

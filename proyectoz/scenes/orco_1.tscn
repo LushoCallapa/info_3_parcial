@@ -1283,8 +1283,8 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(0, -15.1106)
 
 [node name="Orco1" type="CharacterBody2D"]
-collision_layer = 257
-collision_mask = 0
+collision_layer = 256
+collision_mask = 16
 script = ExtResource("1_k2as2")
 max_speed = 40
 

@@ -1747,6 +1747,7 @@ radius = 8.0
 height = 22.0
 
 [node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("body")]
+collision_mask = 257
 script = ExtResource("1_r1i7u")
 body = NodePath(".")
 
@@ -1786,8 +1787,8 @@ position = Vector2(-2, -1)
 shape = SubResource("CapsuleShape2D_douor")
 
 [node name="HurtBox" parent="." instance=ExtResource("11_101np")]
-collision_layer = 16
-collision_mask = 416
+collision_layer = 272
+collision_mask = 160
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, -1)
