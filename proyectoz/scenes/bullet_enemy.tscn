@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://cknbdbgb1og43"]
+
+[ext_resource type="Texture2D" uid="uid://cdkdqvvco8oqh" path="res://assets/efectoAtaque/bulletEnemy2.png" id="1_j1g61"]
+[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="2_jn7o2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vw4le"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq2ys"]
+atlas = ExtResource("1_j1g61")
+region = Rect2(4, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aagw"]
+atlas = ExtResource("1_j1g61")
+region = Rect2(20, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_583s0"]
+atlas = ExtResource("1_j1g61")
+region = Rect2(36, 0, 16, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orhei"]
+atlas = ExtResource("1_j1g61")
+region = Rect2(52, 0, 16, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3rt2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq2ys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aagw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_583s0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orhei")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4b2f"]
+radius = 8.0
+
+[node name="BulletEnemy" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vw4le")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0.93974, 0.487736, 1)
+self_modulate = Color(0.419608, 0.74902, 0.356863, 1)
+sprite_frames = SubResource("SpriteFrames_y3rt2")
+frame = 2
+frame_progress = 0.32028
+
+[node name="HitBox" parent="." instance=ExtResource("2_jn7o2")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+modulate = Color(1, 0.498039, 1, 1)
+shape = SubResource("CircleShape2D_d4b2f")
+debug_color = Color(0.67097, 0.479608, 0.468756, 0.42)
+
+[editable path="HitBox"]

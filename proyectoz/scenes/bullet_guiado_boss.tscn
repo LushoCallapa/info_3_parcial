@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://daewru2vn5b7g"]
+
+[ext_resource type="Texture2D" uid="uid://bam6wc1fq8g18" path="res://assets/efectoAtaque/bulletGuiadoBoss.png" id="1_3to40"]
+[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="2_iqjhl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn6p4"]
+atlas = ExtResource("1_3to40")
+region = Rect2(3, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7b2v"]
+atlas = ExtResource("1_3to40")
+region = Rect2(23, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f5lj"]
+atlas = ExtResource("1_3to40")
+region = Rect2(43, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ocie"]
+atlas = ExtResource("1_3to40")
+region = Rect2(63, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lroft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn6p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7b2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f5lj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ocie")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="BulletGuiadoBoss" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.380392, 0, 1)
+self_modulate = Color(1, 0, 0.223529, 1)
+sprite_frames = SubResource("SpriteFrames_lroft")
+frame = 3
+frame_progress = 0.473592
+
+[node name="HitBox" parent="." instance=ExtResource("2_iqjhl")]
+
+[editable path="HitBox"]

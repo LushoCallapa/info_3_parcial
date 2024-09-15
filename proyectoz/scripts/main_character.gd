@@ -140,6 +140,8 @@ func receive_damage(amount: int):
 		# Si no muere, activar la animación de daño
 		state = HURT
 		state_machine.travel("Hurt")
+		
+	state = MOVE
 
 # Estado cuando el personaje está recibiendo daño
 func hurt_state(delta):

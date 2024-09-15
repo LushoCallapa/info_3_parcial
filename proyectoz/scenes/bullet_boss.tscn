@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://7conv131dmxc"]
+
+[ext_resource type="Texture2D" uid="uid://c1abe4wp2ubfp" path="res://assets/efectoAtaque/bulletBoss.png" id="1_scd1n"]
+[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="2_qn3ej"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y08j2"]
+size = Vector2(47, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjqj7"]
+atlas = ExtResource("1_scd1n")
+region = Rect2(5, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptsmn"]
+atlas = ExtResource("1_scd1n")
+region = Rect2(56, 0, 51, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2kvc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjqj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptsmn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hmfv"]
+size = Vector2(47, 31)
+
+[node name="BulletBoss" type="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_y08j2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.852153, 0.649833, 7.70092e-07, 1)
+self_modulate = Color(1, 0, 0.054902, 1)
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_m2kvc")
+frame = 1
+frame_progress = 0.0981902
+
+[node name="HitBox" parent="." instance=ExtResource("2_qn3ej")]
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_3hmfv")
+debug_color = Color(0.847923, 0.314798, 0.532906, 0.42)
+
+[editable path="HitBox"]

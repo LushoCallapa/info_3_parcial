@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://ceu4k74sueqp"]
+[gd_scene load_steps=108 format=3 uid="uid://ceu4k74sueqp"]
 
 [ext_resource type="Texture2D" uid="uid://crfhxp2cx1h5n" path="res://assets/mainCharacter/Sword_Attack/Sword_attack_full.png" id="1_7bh0l"]
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_r1i7u"]
@@ -9,8 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://cohhdib3k5c7h" path="res://assets/mainCharacter/Sword_Run_attack/Sword_Run_Attack_full.png" id="6_0lyjq"]
 [ext_resource type="Texture2D" uid="uid://ml842qeb1oxq" path="res://assets/mainCharacter/Sword_Walk/Sword_Walk_full.png" id="7_0bbx5"]
 [ext_resource type="Texture2D" uid="uid://416wmilp7doe" path="res://assets/mainCharacter/Sword_Walk_attack/Sword_Walk_Attack_full.png" id="8_3pox6"]
-[ext_resource type="PackedScene" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
-[ext_resource type="PackedScene" path="res://scenes/hurt_box.tscn" id="11_101np"]
+[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="10_ddbn8"]
+[ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="11_101np"]
+[ext_resource type="Texture2D" uid="uid://c57pdlasjwyp8" path="res://assets/healthBar/healthbarUnder.png" id="12_473v0"]
+[ext_resource type="Texture2D" uid="uid://dgbk06lrckq3i" path="res://assets/healthBar/healthbarProgress.png" id="13_5fsui"]
+[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="14_use28"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4nd6"]
 size = Vector2(9, 6.25)
@@ -3047,13 +3050,13 @@ blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3kbmr"]
-animation = &"sword_death_up"
+animation = &"sword_death_down"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s0mq5"]
 animation = &"sword_death_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_446we"]
-animation = &"sword_death_down"
+animation = &"sword_death_up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tp02m"]
 animation = &"sword_death_right"
@@ -3070,13 +3073,13 @@ blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ieewc"]
-animation = &"sword_hurt_up"
+animation = &"sword_hurt_down"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_onj6m"]
 animation = &"sword_hurt_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xppjw"]
-animation = &"sword_hurt_down"
+animation = &"sword_hurt_up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b6f8c"]
 animation = &"sword_hurt_right"
@@ -3264,7 +3267,7 @@ states/Walk/position = Vector2(429, 239)
 states/Walk_Attack/node = SubResource("AnimationNodeBlendSpace2D_jtpcl")
 states/Walk_Attack/position = Vector2(429, 393)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_cws85"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_vpuhf"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_7prff"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_5j8uj"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ne34f"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_ri3p6"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_uvqe5"), "Walk", "Walk_Attack", SubResource("AnimationNodeStateMachineTransition_smnuv"), "Run", "Run_Attack", SubResource("AnimationNodeStateMachineTransition_ic2f0"), "Run_Attack", "Run", SubResource("AnimationNodeStateMachineTransition_v4r28"), "Walk_Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_qwxr6"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_odlvn"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_jxn8h"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_3u45h"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_thnvy")]
-graph_offset = Vector2(-118.566, 137.682)
+graph_offset = Vector2(-100.566, 187.682)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pp14f"]
 size = Vector2(13.75, 34)
@@ -3334,6 +3337,37 @@ debug_color = Color(0.669609, 0.509535, 5.77569e-07, 0.42)
 
 [node name="MainCharacterController" type="Node2D" parent="."]
 position = Vector2(12, -1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -266.0
+offset_top = 24.0
+offset_right = -30.0
+offset_bottom = 61.0
+grow_horizontal = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("mainCharacter")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -267.0
+offset_top = 21.0
+offset_right = -28.0
+offset_bottom = 62.0
+grow_horizontal = 0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("12_473v0")
+texture_progress = ExtResource("13_5fsui")
+script = ExtResource("14_use28")
+mainCharacter = NodePath("../..")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
