@@ -57,6 +57,7 @@ gravity_scale = 0.0
 script = ExtResource("1_uf1ij")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_usn7b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -69,6 +70,7 @@ collision_layer = 128
 collision_mask = 64
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
+visible = false
 shape = SubResource("CircleShape2D_434ih")
 debug_color = Color(0.970914, 0, 0.451515, 0.42)
 
