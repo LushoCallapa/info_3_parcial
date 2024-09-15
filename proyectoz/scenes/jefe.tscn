@@ -61,8 +61,8 @@
 [ext_resource type="Texture2D" uid="uid://tyjg74p41t6y" path="res://assets/jefe/demon_death/demon_death_20.png" id="58_n4ws2"]
 [ext_resource type="Texture2D" uid="uid://b2qqp82yo8hrw" path="res://assets/jefe/demon_death/demon_death_21.png" id="59_xejmt"]
 [ext_resource type="Texture2D" uid="uid://bgix18e74sic3" path="res://assets/jefe/demon_death/demon_death_22.png" id="60_en8p3"]
-[ext_resource type="PackedScene" path="res://scenes/hit_box.tscn" id="62_hf62k"]
-[ext_resource type="PackedScene" path="res://scenes/hurt_box.tscn" id="63_ptiho"]
+[ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="62_hf62k"]
+[ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="63_ptiho"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pt2f"]
 size = Vector2(57, 16.5)
@@ -622,10 +622,10 @@ radius = 36.0
 height = 90.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5woeq"]
-size = Vector2(89.25, 42)
+size = Vector2(77.25, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgcot"]
-size = Vector2(98, 42)
+size = Vector2(78, 70)
 
 [node name="jefe" type="CharacterBody2D"]
 collision_layer = 260
@@ -660,7 +660,7 @@ position = Vector2(-90, 34.975)
 
 [node name="HitBox" parent="HitBoXPivot" instance=ExtResource("62_hf62k")]
 collision_layer = 288
-collision_mask = 18
+collision_mask = 16
 
 [node name="CollisionShape2D" parent="HitBoXPivot/HitBox" index="0"]
 position = Vector2(13.25, 0)
@@ -682,17 +682,18 @@ collision_layer = 256
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-71.625, 24)
+position = Vector2(-77.625, 10.5)
 shape = SubResource("RectangleShape2D_5woeq")
 debug_color = Color(0, 0, 0, 0.42)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(79, 24)
+position = Vector2(89, 10)
 shape = SubResource("RectangleShape2D_rgcot")
 debug_color = Color(1.86507e-07, 0.173807, 0.20874, 0.42)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
+[connection signal="area_entered" from="HitBoXPivot/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
 

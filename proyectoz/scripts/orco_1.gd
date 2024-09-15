@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 @export var target: Node2D = null
 @export var max_speed = 50
+@export var body: CharacterBody2D
 @onready var navigation: NavigationAgent2D = $NavigationAgent2D
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = $AnimationTree.get("parameters/playback")
 
 enum {
 	MOVE,
-	ROLL,
+	PAUSE,
 	ATTACK
 }
 
@@ -31,11 +32,12 @@ func _ready() -> void:
 	print(navigation.get_current_navigation_path())
 	
 func _physics_process(delta: float) -> void:
+	if not body:
+		attack_anim_finished()
+		state = PAUSE
 	match state:
 		MOVE:
 			move_state(delta)
-		ROLL:
-			pass
 		ATTACK:
 			attack_state(delta)
 
@@ -56,7 +58,10 @@ func attack_state(delta):
 	state_machine.travel("attack")
 
 func attack_anim_finished():
+	
 	state = MOVE
+	if not body:
+		state = PAUSE
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	state = ATTACK

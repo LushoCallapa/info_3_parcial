@@ -31,7 +31,8 @@ editor_draw_drag_margin = true
 
 [node name="Marker2D" type="Marker2D" parent="Level1/MainCharacter"]
 
-[node name="Orco1" parent="Level1" node_paths=PackedStringArray("target") instance=ExtResource("3_rb1l6")]
+[node name="Orco1" parent="Level1" node_paths=PackedStringArray("target", "body") instance=ExtResource("3_rb1l6")]
 position = Vector2(487, 336)
 scale = Vector2(0.8, 0.8)
 target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
