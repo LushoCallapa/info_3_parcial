@@ -103,7 +103,8 @@ func death_animation_finish():
 func _on_next_atack_timeout() -> void:
 	#print(state)
 	get_node("next_atack").stop()
-	state = ATTACK
+	if currentHealth > 0:
+		state = ATTACK
 
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:

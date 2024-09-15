@@ -14,7 +14,7 @@ signal healthChanged
 
 @export var maxHealth = 1000
 @export var currentHealth: int = maxHealth
-
+var bullet_scene
 enum {
 	PAUSE,
 	MOVE,
@@ -39,7 +39,10 @@ func set_animations(input_vector):
 	
 
 func _ready() -> void:
+	bullet_scene = preload("res://scenes/bullet_guiado_boss.tscn")
+	get_node("bullet_add").start()
 	call_deferred("setup")
+	
 	#print(navigation.get_current_navigation_path())
 	
 func _physics_process(delta: float) -> void:
@@ -108,7 +111,8 @@ func attack_hurt_finished():
 func _on_detection_area_area_entered(area: Area2D) -> void:
 	body.damage = 10
 	#print("Hola")
-	state = ATTACK
+	if currentHealth > 0:
+		state = ATTACK
 
 
 func _on_detection_area_area_exited(area: Area2D) -> void:
@@ -123,3 +127,17 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	receive_damage(damage)
+
+
+func _on_bullet_add_timeout() -> void:
+	if not state == PAUSE:
+		if currentHealth > 0:
+			var bullet_instance = bullet_scene.instantiate()
+			get_parent().add_child(bullet_instance)
+			bullet_instance.global_position = global_position
+			bullet_instance.target = target
+			bullet_instance.body = body
+	else:
+		get_node("bullet_add").stop()
+	
+	

@@ -22,11 +22,16 @@ enum {
 	HURT,
 	DEATH
 }
-
+var input_vector_aux = Vector2.ZERO
 var bullet_scene
 var state = MOVE
 var is_running = false
+
 func _ready() -> void:
+	
+	input_vector_aux.x = 0
+	input_vector_aux.y = -1
+	input_vector_aux = input_vector_aux.normalized()
 	bullet_scene = preload("res://scenes/bullet.tscn")
 	
 func set_animations(input_vector):
@@ -73,19 +78,23 @@ func move_state(delta):
 		input_vector.x = -1
 
 	input_vector = input_vector.normalized()
-
+	
+	if input_vector != Vector2.ZERO:
+		input_vector_aux = input_vector
 	if input_vector != Vector2.ZERO:
 		set_animations(input_vector)
 		if Input.is_action_pressed("RunUp") or Input.is_action_pressed("RunDown") or Input.is_action_pressed("RunRight") or Input.is_action_pressed("RunLeft"):
 			is_running = true
+			set_animations(input_vector)
 			state_machine.travel("Run")
 			velocity = velocity.move_toward(input_vector * MAX_SPEED * RUN_SPEED_MULTIPLIER, ACCELERATION * delta)
 		else:
 			is_running = false
+			set_animations(input_vector)
 			state_machine.travel("Walk")
 			velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		set_animations(input_vector)
+		set_animations(input_vector_aux)
 		state_machine.travel("Idle")
 		is_running = false
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -94,22 +103,24 @@ func move_state(delta):
 
 	if Input.is_action_just_pressed("NormalAttack"):
 		#state_machine.travel("Attack")
-		state = ATTACK
+		if currentHealth > 0:
+			state = ATTACK
 		
 	if Input.is_action_just_pressed("SpecialAttack"):
-		var bullet_instance = bullet_scene.instantiate()
-		get_parent().add_child(bullet_instance)
-		bullet_instance.global_position = global_position
-		var mouse_position = get_global_mouse_position()
-		#print(global_position  ,mouse_position)
-		var direction = (mouse_position - global_position).normalized()
-		bullet_instance.target = mouse_position
-		bullet_instance.direction = direction
-		state = ATTACK
+		if currentHealth > 0:
+			var bullet_instance = bullet_scene.instantiate()
+			get_parent().add_child(bullet_instance)
+			bullet_instance.global_position = global_position
+			var mouse_position = get_global_mouse_position()
+			#print(global_position  ,mouse_position)
+			var direction = (mouse_position - global_position).normalized()
+			bullet_instance.target = mouse_position
+			bullet_instance.direction = direction
+			state = ATTACK
 
 func attack_state(delta):
 	velocity = Vector2.ZERO
-	
+	set_animations(input_vector_aux)
 	if is_running:
 		state_machine.travel("Run_Attack")
 	else:
@@ -136,6 +147,7 @@ func receive_damage(amount: int):
 		state = HURT
 
 func death_state(delta):
+	
 	state_machine.travel("Death")
 
 func hurt_state(delta):

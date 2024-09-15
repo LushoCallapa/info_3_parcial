@@ -797,7 +797,7 @@ parameters/death/blend_position = Vector2(0, 0)
 position = Vector2(-90, 34.975)
 
 [node name="HitBox" parent="HitBoXPivot" instance=ExtResource("62_hf62k")]
-collision_layer = 288
+collision_layer = 32
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="HitBoXPivot/HitBox" index="0"]
@@ -846,10 +846,14 @@ texture_progress = ExtResource("65_qvorl")
 script = ExtResource("66_1fky3")
 Jefe = NodePath("..")
 
+[node name="bullet_add" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="area_entered" from="HitBoXPivot/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
 [connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]
+[connection signal="timeout" from="bullet_add" to="." method="_on_bullet_add_timeout"]
 
 [editable path="HitBoXPivot/HitBox"]
 [editable path="HurtBox"]

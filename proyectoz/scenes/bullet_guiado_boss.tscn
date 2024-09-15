@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://daewru2vn5b7g"]
+[gd_scene load_steps=11 format=3 uid="uid://daewru2vn5b7g"]
 
+[ext_resource type="Script" path="res://scripts/bullet_guiado_boss.gd" id="1_co8dw"]
 [ext_resource type="Texture2D" uid="uid://c6n5cdvwnhba4" path="res://assets/efectoAtaque/dirigidaBoss.png" id="1_y40p2"]
 [ext_resource type="PackedScene" uid="uid://5fgom1n2kal2" path="res://scenes/hit_box.tscn" id="2_iqjhl"]
 
@@ -46,6 +47,10 @@ animations = [{
 radius = 8.0
 
 [node name="BulletGuiadoBoss" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_co8dw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_u2l0j")
@@ -54,14 +59,18 @@ shape = SubResource("CircleShape2D_u2l0j")
 modulate = Color(1, 0.380392, 0, 1)
 self_modulate = Color(1, 0, 0.223529, 1)
 sprite_frames = SubResource("SpriteFrames_lroft")
-frame_progress = 0.342341
+frame_progress = 0.901029
 
 [node name="HitBox" parent="." instance=ExtResource("2_iqjhl")]
-collision_layer = 128
-collision_mask = 16
+collision_layer = 32
+collision_mask = 144
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("CircleShape2D_4q85k")
 debug_color = Color(0.740004, 0.431403, 0.482968, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 
 [editable path="HitBox"]

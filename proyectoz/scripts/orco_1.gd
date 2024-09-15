@@ -105,7 +105,8 @@ func death_animation_finish():
 	
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	body.damage = 10
-	state = ATTACK
+	if currentHealth > 0:
+		state = ATTACK
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	receive_damage(10)

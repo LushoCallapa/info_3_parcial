@@ -3391,7 +3391,7 @@ height = 24.0
 
 [node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("body")]
 position = Vector2(2, 0)
-collision_layer = 2
+collision_layer = 0
 script = ExtResource("1_r1i7u")
 body = NodePath(".")
 
