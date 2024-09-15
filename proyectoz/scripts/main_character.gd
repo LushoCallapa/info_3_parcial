@@ -125,7 +125,7 @@ func attack_hurt_finished():
 
 func receive_damage(amount: int):
 	currentHealth -= amount
-	print(currentHealth)
+	#print(currentHealth)
 	emit_signal("healthChanged", currentHealth)
 	healthChanged.emit()
 
@@ -146,5 +146,5 @@ func death_animation_finish():
 	queue_free()
 	
 func _on_hurt_box_area_entered(area: Area2D) -> void:
-	print("area")
+	#print("area")
 	receive_damage(damage)

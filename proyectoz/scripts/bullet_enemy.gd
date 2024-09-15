@@ -1,15 +1,17 @@
 extends RigidBody2D
 
 @export var target: Vector2
-var speed = 120
+var speed = 100
 @export var direction: Vector2
 
 
 
 func _physics_process(delta):
+	
 	linear_velocity = direction * speed
 	var distance = global_position.distance_to(target)
-	if distance < 1:
+	#print(distance)
+	if distance < 3 or distance > 1800:
 		queue_free()
 
 

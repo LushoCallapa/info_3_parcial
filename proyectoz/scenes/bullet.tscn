@@ -7,7 +7,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0wpi7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_usn7b"]
-radius = 15.0333
+radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85kj4"]
 atlas = ExtResource("1_kwgom")
@@ -46,10 +46,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_434ih"]
-radius = 15.0
+radius = 5.0
 
 [node name="Bullet" type="RigidBody2D"]
-scale = Vector2(0.386134, 0.369288)
+scale = Vector2(1, 0.95)
 collision_layer = 0
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_0wpi7")
@@ -60,6 +60,8 @@ script = ExtResource("1_uf1ij")
 shape = SubResource("CircleShape2D_usn7b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.19209e-07, 1.19209e-07)
+scale = Vector2(0.354736, 0.332191)
 sprite_frames = SubResource("SpriteFrames_jij2c")
 autoplay = "default"
 frame = 3
@@ -72,5 +74,7 @@ collision_mask = 64
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("CircleShape2D_434ih")
 debug_color = Color(0.970914, 0, 0.451515, 0.42)
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 
 [editable path="HitBox"]

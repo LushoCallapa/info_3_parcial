@@ -1,13 +1,16 @@
-[gd_scene load_steps=35 format=3 uid="uid://cbbvt70kgo1s6"]
+[gd_scene load_steps=31 format=3 uid="uid://cbbvt70kgo1s6"]
 
+[ext_resource type="Script" path="res://scripts/orco_2.gd" id="1_1evtg"]
 [ext_resource type="Texture2D" uid="uid://bpb0gts1bolxa" path="res://assets/enemigos/Orc2/Orc2_attack/orc2_attack_full.png" id="1_hy4u2"]
 [ext_resource type="Texture2D" uid="uid://bfihpso8wywsw" path="res://assets/enemigos/Orc2/Orc2_death/orc2_death_full.png" id="2_2cwub"]
 [ext_resource type="Texture2D" uid="uid://c7akd2mc6ltic" path="res://assets/enemigos/Orc2/Orc2_hurt/orc2_hurt_full.png" id="3_7e461"]
 [ext_resource type="Texture2D" uid="uid://bc01qyjgd6lqi" path="res://assets/enemigos/Orc2/Orc2_idle/orc2_idle_full.png" id="4_ctnna"]
 [ext_resource type="Texture2D" uid="uid://ccnnpdj3cvg06" path="res://assets/enemigos/Orc2/Orc2_run/orc2_run_full.png" id="5_u5pcc"]
 [ext_resource type="Texture2D" uid="uid://nypkv7mt0r3r" path="res://assets/enemigos/Orc2/Orc2_run_attack/orc2_run_attack_full.png" id="6_82n58"]
+[ext_resource type="PackedScene" uid="uid://dcbwd5lga5cy2" path="res://scenes/hurt_box.tscn" id="8_8dut6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dt6pc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8y2u"]
+size = Vector2(21, 8)
 
 [sub_resource type="Animation" id="Animation_su5qo"]
 length = 0.001
@@ -87,6 +90,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [8]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_anim_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_twsk2"]
 resource_name = "dead"
@@ -127,6 +144,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [8]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death_animation_finish"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_cgkp5"]
 resource_name = "hurt"
@@ -166,6 +197,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [6]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_hurt_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_yyip8"]
@@ -313,54 +358,18 @@ animation = &"hurt"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7h0il"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v7xoj"]
-animation = &"run attack"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fv5s4"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ol5iw"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v0y36"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u58nq"]
-switch_mode = 2
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_badlu"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ilxai"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e5imy"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3420v"]
-switch_mode = 1
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_65vq5"]
-switch_mode = 1
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rxgn2"]
-switch_mode = 1
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_de0as"]
-switch_mode = 1
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lp6ym"]
-switch_mode = 1
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dx2tg"]
 switch_mode = 2
@@ -375,20 +384,25 @@ states/hurt/node = SubResource("AnimationNodeAnimation_hubpx")
 states/hurt/position = Vector2(570, 23)
 states/idle/node = SubResource("AnimationNodeAnimation_7h0il")
 states/idle/position = Vector2(402, 124)
-states/run/node = SubResource("AnimationNodeAnimation_fv5s4")
-states/run/position = Vector2(347, 289)
-"states/run attack/node" = SubResource("AnimationNodeAnimation_v7xoj")
-"states/run attack/position" = Vector2(684, 295)
-transitions = ["run attack", "idle", SubResource("AnimationNodeStateMachineTransition_ol5iw"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_v0y36"), "dead", "idle", SubResource("AnimationNodeStateMachineTransition_u58nq"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_badlu"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ilxai"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_e5imy"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_3420v"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_65vq5"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_rxgn2"), "idle", "run attack", SubResource("AnimationNodeStateMachineTransition_de0as"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lp6ym"), "dead", "End", SubResource("AnimationNodeStateMachineTransition_dx2tg")]
-graph_offset = Vector2(-82, -71)
+transitions = ["hurt", "idle", SubResource("AnimationNodeStateMachineTransition_badlu"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ilxai"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_e5imy"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_3420v"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_65vq5"), "idle", "dead", SubResource("AnimationNodeStateMachineTransition_rxgn2"), "dead", "End", SubResource("AnimationNodeStateMachineTransition_dx2tg")]
+graph_offset = Vector2(-82, -40.8729)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h6754"]
+radius = 9.0
+height = 26.0
 
 [node name="Orco2" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_1evtg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_dt6pc")
+position = Vector2(-1, 7)
+shape = SubResource("RectangleShape2D_k8y2u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.38419e-07, 9.53674e-07)
+scale = Vector2(0.875, 0.828125)
 texture = ExtResource("1_hy4u2")
 hframes = 8
 vframes = 4
@@ -401,3 +415,19 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_rp474")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="next_atack" type="Timer" parent="."]
+
+[node name="HurtBox" parent="." instance=ExtResource("8_8dut6")]
+collision_layer = 64
+collision_mask = 136
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_h6754")
+debug_color = Color(0.991107, 0, 0.269864, 0.42)
+
+[connection signal="timeout" from="next_atack" to="." method="_on_next_atack_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

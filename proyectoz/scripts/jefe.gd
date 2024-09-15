@@ -30,7 +30,7 @@ func set_animations(input_vector):
 
 func _ready() -> void:
 	call_deferred("setup")
-	print(navigation.get_current_navigation_path())
+	#print(navigation.get_current_navigation_path())
 	
 func _physics_process(delta: float) -> void:
 	if not body:
@@ -66,17 +66,17 @@ func attack_anim_finished():
 		state = PAUSE
 	
 func _on_detection_area_area_entered(area: Area2D) -> void:
-	body.damage = 20
-	print("Hola")
+	body.damage = 10
+	#print("Hola")
 	state = ATTACK
 
 
 func _on_detection_area_area_exited(area: Area2D) -> void:
-	print("Adios")
+	#print("Adios")
 	state = MOVE
 	if not body:
 		state = PAUSE
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	body.damage = 20
+	body.damage = 10
