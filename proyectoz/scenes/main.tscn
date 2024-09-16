@@ -13,9 +13,10 @@ position = Vector2(470, 277)
 position = Vector2(-434, -266)
 script = ExtResource("2_m5k6r")
 
-[node name="MainCharacter" parent="Level1" instance=ExtResource("2_1svwk")]
+[node name="MainCharacter" parent="Level1" node_paths=PackedStringArray("body") instance=ExtResource("2_1svwk")]
 position = Vector2(296, 256)
 up_direction = Vector2(0, 1)
+body = NodePath(".")
 
 [node name="Camera2D2" type="Camera2D" parent="Level1/MainCharacter"]
 position = Vector2(-2, -2)

@@ -3,6 +3,8 @@ extends CharacterBody2D
 class_name MainCharacter
 
 signal healthChanged
+signal is_death
+signal is_hurt
 
 @onready var animation_tree = $AnimationTree
 @onready var state_machine = $AnimationTree.get("parameters/playback")
@@ -44,115 +46,18 @@ func set_animations(input_vector):
 	animation_tree.set("parameters/Hurt/blend_position", input_vector)
 	animation_tree.set("parameters/Death/blend_position", input_vector)
 
-func _physics_process(delta: float) -> void:
-	match state:
-		MOVE:
-			move_state(delta)
-		ATTACK:
-			attack_state(delta)
-		HURT:
-			hurt_state(delta)
-		DEATH:
-			death_state(delta)
-
-func move_state(delta):
-	var input_vector = Vector2.ZERO
-	
-	# Verifica si se están usando las teclas normales o las de correr
-	if Input.is_action_pressed("RunUp"):
-		input_vector.y = -1
-	elif Input.is_action_pressed("RunDown"):
-		input_vector.y = 1
-	elif Input.is_action_pressed("up"):
-		input_vector.y = -1
-	elif Input.is_action_pressed("down"):
-		input_vector.y = 1
-
-	if Input.is_action_pressed("RunRight"):
-		input_vector.x = 1
-	elif Input.is_action_pressed("RunLeft"):
-		input_vector.x = -1
-	elif Input.is_action_pressed("right"):
-		input_vector.x = 1
-	elif Input.is_action_pressed("left"):
-		input_vector.x = -1
-
-	input_vector = input_vector.normalized()
-	
-	if input_vector != Vector2.ZERO:
-		input_vector_aux = input_vector
-	if input_vector != Vector2.ZERO:
-		set_animations(input_vector)
-		if Input.is_action_pressed("RunUp") or Input.is_action_pressed("RunDown") or Input.is_action_pressed("RunRight") or Input.is_action_pressed("RunLeft"):
-			is_running = true
-			set_animations(input_vector)
-			state_machine.travel("Run")
-			velocity = velocity.move_toward(input_vector * MAX_SPEED * RUN_SPEED_MULTIPLIER, ACCELERATION * delta)
-		else:
-			is_running = false
-			set_animations(input_vector)
-			state_machine.travel("Walk")
-			velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
-	else:
-		set_animations(input_vector_aux)
-		state_machine.travel("Idle")
-		is_running = false
-		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	
-	move_and_slide()
-
-	if Input.is_action_just_pressed("NormalAttack"):
-		#state_machine.travel("Attack")
-		if currentHealth > 0:
-			state = ATTACK
-		
-	if Input.is_action_just_pressed("SpecialAttack"):
-		if currentHealth > 0:
-			var bullet_instance = bullet_scene.instantiate()
-			get_parent().add_child(bullet_instance)
-			bullet_instance.global_position = global_position
-			var mouse_position = get_global_mouse_position()
-			#print(global_position  ,mouse_position)
-			var direction = (mouse_position - global_position).normalized()
-			bullet_instance.target = mouse_position
-			bullet_instance.direction = direction
-			state = ATTACK
-
-func attack_state(delta):
-	velocity = Vector2.ZERO
-	set_animations(input_vector_aux)
-	if is_running:
-		state_machine.travel("Run_Attack")
-	else:
-		state_machine.travel("Walk_Attack")
-		
-	state = MOVE
-
-func attack_anim_finished():
-	state = MOVE
-	
-func attack_hurt_finished():
-	state = MOVE
-
 func receive_damage(amount: int):
-	currentHealth -= amount
+
+	currentHealth-= amount
 	#print(currentHealth)
 	emit_signal("healthChanged", currentHealth)
 	healthChanged.emit()
 
 	if currentHealth <= 0:
 		currentHealth = 0
-		state = DEATH
+		is_death.emit()
 	else:
-		state = HURT
-
-func death_state(delta):
-	
-	state_machine.travel("Death")
-
-func hurt_state(delta):
-	#velocity = Vector2.ZERO  # Detiene el movimiento durante el daño
-	state_machine.travel("Hurt")
+		is_hurt.emit()
 
 func death_animation_finish():
 	queue_free()
@@ -160,3 +65,50 @@ func death_animation_finish():
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	#print("area")
 	receive_damage(damage)
+
+
+func _on_player_controller_do_death(input_vector: Variant) -> void:
+	set_animations(input_vector)
+	state_machine.travel("Death")
+
+
+func _on_player_controller_do_death_finish() -> void:
+	queue_free()
+	
+
+
+func _on_player_controller_do_hurt(input_vector: Variant) -> void:
+	set_animations(input_vector)
+	state_machine.travel("Hurt")
+
+func _on_player_controller_do_idle(input_vector: Variant) -> void:
+	set_animations(input_vector)
+	state_machine.travel("Idle")
+
+
+func _on_player_controller_do_run(input_vector: Variant) -> void:
+	set_animations(input_vector)
+	state_machine.travel("Run")
+
+
+func _on_player_controller_do_walk(input_vector: Variant) -> void:
+	set_animations(input_vector)
+	state_machine.travel("Walk")
+
+
+func _on_player_controller_do_walk_attack(input_vector: Variant) -> void:
+	set_animations(input_vector_aux)
+	state_machine.travel("Walk_Attack")
+
+
+func _on_player_controller_health_changed(health: Variant) -> void:
+	receive_damage(health)
+
+
+func _on_player_controller_do_run_attack(input_vector: Variant) -> void:
+	set_animations(input_vector_aux)
+	state_machine.travel("Run_Attack")
+
+
+func _on_is_hurt() -> void:
+	pass # Replace with function body.

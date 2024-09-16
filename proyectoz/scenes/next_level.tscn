@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bb5fp8kk70quc"]
+[gd_scene load_steps=6 format=3 uid="uid://bb5fp8kk70quc"]
 
 [ext_resource type="PackedScene" uid="uid://djotkns7w5qio" path="res://scenes/level_2.tscn" id="1_romt4"]
 [ext_resource type="PackedScene" uid="uid://dghj5lg2j3j5" path="res://scenes/jefe.tscn" id="2_rdf3i"]
 [ext_resource type="PackedScene" uid="uid://ceu4k74sueqp" path="res://scenes/main_character.tscn" id="3_x3l7f"]
+[ext_resource type="PackedScene" uid="uid://cbbvt70kgo1s6" path="res://scenes/orco_2.tscn" id="4_ka6kp"]
+[ext_resource type="PackedScene" uid="uid://dmjj0p7qvo8jl" path="res://scenes/orco_1.tscn" id="5_x2v2g"]
 
 [node name="Next Level" type="Node2D"]
 
@@ -12,6 +14,7 @@
 position = Vector2(118, 51)
 collision_layer = 1
 collision_mask = 257
+maxHealth = 100
 
 [node name="Camera2D" type="Camera2D" parent="Level2/MainCharacter"]
 zoom = Vector2(2, 2)
@@ -21,5 +24,45 @@ position = Vector2(-2, 0)
 
 [node name="jefe" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("2_rdf3i")]
 position = Vector2(652, 314)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco2" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("4_ka6kp")]
+position = Vector2(794, 579)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco3" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("4_ka6kp")]
+position = Vector2(1116, 351)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco4" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("4_ka6kp")]
+position = Vector2(829, 51)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco5" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("4_ka6kp")]
+position = Vector2(497, 51)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco6" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("4_ka6kp")]
+position = Vector2(114, 495)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco7" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("4_ka6kp")]
+position = Vector2(278, 424)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco1" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("5_x2v2g")]
+position = Vector2(754, 449)
+target = NodePath("../MainCharacter/Marker2D")
+body = NodePath("../MainCharacter")
+
+[node name="Orco8" parent="Level2" node_paths=PackedStringArray("target", "body") instance=ExtResource("5_x2v2g")]
+position = Vector2(744, 251)
 target = NodePath("../MainCharacter/Marker2D")
 body = NodePath("../MainCharacter")

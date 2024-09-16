@@ -13,7 +13,7 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	orcos1 = orcos1.filter(is_instance_valid)
-	print(orcos1)
+
 	if orcos1.size() == 0:
 		change_level()
 	
